@@ -1,0 +1,21 @@
+spring:
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sell_now_db
+    username: postgres
+    password: 1234
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 7788
+  error:
+    include-message: always
+user:
+  service:
+    url: http://localhost:8088
