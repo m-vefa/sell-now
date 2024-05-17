@@ -3,7 +3,7 @@ package org.zsell.agentgateway.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.zsell.agentgateway.model.AuthenticationRequest;
+import org.zsell.agentgateway.model.auth.AuthenticationRequest;
 
 
 @RestController

@@ -15,4 +15,4 @@ spring:
 server:
   error:
     include-message: always
-  port: 8088
+  port: 7088

@@ -2,7 +2,7 @@ package org.zsell.agentgateway.service.auth;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.zsell.agentgateway.model.a.UserProfile;
+import org.zsell.agentgateway.model.auth.UserProfile;
 
 import java.util.Collection;
 import java.util.Collections;

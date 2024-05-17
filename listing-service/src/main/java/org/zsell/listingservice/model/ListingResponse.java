@@ -2,13 +2,14 @@ package org.zsell.listingservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.zsell.listingservice.domain.Category;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,5 +20,4 @@ public class ListingResponse {
     private Integer price;
     private LocalDate createdDate;
     private LocalDate updatedDate;
-    private Category category;
 }

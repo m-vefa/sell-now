@@ -1,14 +1,15 @@
-package org.zsell.agentgateway.model.a;
+package org.zsell.agentgateway.model.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class UserProfile {

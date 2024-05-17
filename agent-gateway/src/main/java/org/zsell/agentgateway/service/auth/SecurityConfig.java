@@ -32,7 +32,7 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(requests -> requests.requestMatchers("/auth/**","/swagger-ui.html/*")
+                .authorizeHttpRequests(requests -> requests.requestMatchers("/auth/**","/swagger-ui/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated())

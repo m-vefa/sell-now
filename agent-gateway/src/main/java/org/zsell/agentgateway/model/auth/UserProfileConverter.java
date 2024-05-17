@@ -1,9 +1,8 @@
-package org.zsell.agentgateway.model;
+package org.zsell.agentgateway.model.auth;
 
 import io.jsonwebtoken.Claims;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import org.zsell.agentgateway.model.a.UserProfile;
 
 @Component
 public class UserProfileConverter {

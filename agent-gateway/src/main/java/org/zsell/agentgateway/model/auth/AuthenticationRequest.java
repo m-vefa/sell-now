@@ -1,4 +1,4 @@
-package org.zsell.agentgateway.model;
+package org.zsell.agentgateway.model.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AuthenticationResponse {
+public class AuthenticationRequest {
 
-    private String jwtToken;
+    private String email;
+    private String password;
 }

@@ -4,8 +4,8 @@ package org.zsell.agentgateway.client;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.zsell.agentgateway.model.AuthenticationRequest;
-import org.zsell.agentgateway.model.a.UserProfile;
+import org.zsell.agentgateway.model.auth.AuthenticationRequest;
+import org.zsell.agentgateway.model.auth.UserProfile;
 
 @FeignClient(value = "userServiceClient", url = "${user.service.url}")
 

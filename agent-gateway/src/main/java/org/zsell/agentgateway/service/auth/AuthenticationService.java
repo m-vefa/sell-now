@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import org.zsell.agentgateway.model.UserProfileConverter;
+import org.zsell.agentgateway.model.auth.UserProfileConverter;
 
 import java.util.Optional;
 
