@@ -16,5 +16,5 @@ public class Order implements Serializable {
     private String orderId;
     private String name;
     private int qty;
-    private double price;
+    private Integer price;
 }

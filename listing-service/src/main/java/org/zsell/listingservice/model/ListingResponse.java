@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -18,6 +18,6 @@ public class ListingResponse {
     private String title;
     private String description;
     private Integer price;
-    private LocalDate createdDate;
-    private LocalDate updatedDate;
+    private Date createdDate;
+    private Date updatedDate;
 }

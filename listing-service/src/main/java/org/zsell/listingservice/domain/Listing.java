@@ -1,10 +1,10 @@
 package org.zsell.listingservice.domain;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,6 +12,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,8 +21,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.zsell.listingservice.enums.PublishingType;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -29,54 +30,49 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
+@Table(name = "listings")
 public class Listing {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer listingId;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private PublishingType publishingType;
 
     private String title;
-
     private String description;
     private Integer price;
 
-    @Column(name = "created_at", updatable = false)
-    private LocalDate createdDate;
-    @Column(name = "updated_at")
-    private LocalDate updatedDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdDate;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> images;
 
-    // Residential-specific fields
-    private int residentialBedrooms;
-    private int residentialBathrooms;
-    private double residentialArea;
-    private int residentialFloor;
-    private boolean residentialFurnished;
-    private boolean residentialParking;
-    private boolean residentialGarden;
+    private Double area;
+    private Integer room;
+    private Integer hall;
+    private Integer residentialBathrooms;
+    private Integer residentialFloor;
+    private Boolean residentialFurnished;
+    private Boolean residentialParking;
+    private Boolean residentialGarden;
 
-    // Commercial-specific fields
-    private double commercialArea;
-    private double commercialFloorSpace;
-    private int commercialNumberOfRooms;
-    private boolean commercialParking;
+    private Double commercialFloorSpace;
+    private Boolean commercialParking;
     private String commercialLeaseTerm;
 
-    // Land-specific fields
-    private double landArea;
     private String landZoning;
     private String landSoilType;
-    private boolean landUtilitiesAvailable;
-    private String landRoadAccess;
+    private Boolean landUtilitiesAvailable;
+    private Boolean landRoadAccess;
     private String landTopography;
-
 }
