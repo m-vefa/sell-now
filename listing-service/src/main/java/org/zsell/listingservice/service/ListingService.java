@@ -1,10 +1,14 @@
 package org.zsell.listingservice.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.zsell.listingservice.converter.ListingResponseConverter;
+import org.zsell.listingservice.converter.PublishListingResponseConverter;
 import org.zsell.listingservice.domain.Listing;
+import org.zsell.listingservice.exception.ListingNotFoundException;
 import org.zsell.listingservice.model.ListingCreateRequest;
+import org.zsell.listingservice.model.ListingPublishResponse;
 import org.zsell.listingservice.model.ListingResponse;
 import org.zsell.listingservice.repository.ListingRepository;
 
@@ -13,11 +17,14 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class ListingService {
 
     private final ListingRepository listingsRepository;
     private final ListingResponseConverter listingResponseConverter;
+    private final PublishListingResponseConverter publishListingResponseConverter;
+    private final ListingSaveService listingSaveService;
 
     public List<ListingResponse> getAllListing() {
         List<Listing> listings = listingsRepository.findAll();
@@ -60,5 +67,16 @@ public class ListingService {
 
     public void deleteListing(Integer id) {
         listingsRepository.deleteById(id);
+    }
+
+
+    public ListingPublishResponse publishListing(Integer listingId) {
+        Optional<Listing> listing = listingsRepository.findById(listingId);
+        if (listing.isEmpty() ) {
+           throw new ListingNotFoundException("Listing not found for ID: " + listingId);
+        }
+        listingSaveService.activateListingById(listing.get(),listingId);
+        return publishListingResponseConverter.apply(listing.get());
+
     }
 }

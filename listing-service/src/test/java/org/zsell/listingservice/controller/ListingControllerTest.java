@@ -8,6 +8,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.zsell.listingservice.model.ListingPublishResponse;
 import org.zsell.listingservice.model.ListingResponse;
 import org.zsell.listingservice.service.ListingService;
 
@@ -16,6 +17,8 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -29,9 +32,6 @@ class ListingControllerTest {
 
     @MockBean
     private ListingService listingService;
-
-
-//    Pattern: ExpectedBehavior_whenMethodUnderTest_withScenario
 
     @Test
     void givenValidRequest_whenGetListings_thenReturnListOfListings() throws Exception {
@@ -66,5 +66,20 @@ class ListingControllerTest {
                 .andExpect(jsonPath("$[1].price").value(200.0));
     }
 
+    @Test
+    void returnOkStatus_whenPublishListing_withValidIdAndSuccessfulPublication() throws Exception {
+        int listingId = 1;
+        int activateId = 2; // Assuming this is the ID after activation
+        ListingPublishResponse mockResponse = ListingPublishResponse.builder()
+                .id(listingId)
+                .activateId(activateId)
+                .build();
 
+        when(listingService.publishListing(listingId)).thenReturn(mockResponse);
+
+        mockMvc.perform(post("/listings/publish/{id}", listingId)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().json("{\"id\":1,\"activateId\":2}"));
+    }
 }

@@ -2,8 +2,6 @@ package org.zsell.listingservice.domain;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +17,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.zsell.listingservice.enums.PublishingType;
 
 import java.util.Date;
 import java.util.List;
@@ -37,8 +34,6 @@ public class Listing {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer listingId;
 
-    @Enumerated(EnumType.STRING)
-    private PublishingType publishingType;
 
     private String title;
     private String description;
@@ -56,6 +51,9 @@ public class Listing {
 
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> images;
+
+    private Integer publishingType;
+    private Integer activateId;
 
     private Double area;
     private Integer room;
