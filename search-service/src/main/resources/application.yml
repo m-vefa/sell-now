@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: search-service
+
+  # Exclude DataSource auto-configuration (for PostgreSQL, if not used)
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+  # RabbitMQ configuration
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    compatibility-verifier:
+      enabled: false
+
+  # PostgreSQL Database configuration (if required)
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sell_now_db
+    username: vkaraahmet
+    password: 123456
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+
+server:
+  error:
+    include-message: always
+  port: 7784
+
+listing:
+  service:
+    url: http://localhost:7777

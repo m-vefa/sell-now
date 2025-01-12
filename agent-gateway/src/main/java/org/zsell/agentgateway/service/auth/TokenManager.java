@@ -146,7 +146,6 @@ public class TokenManager {
 
         return parts[1];
     }
-
     public AuthenticationResponse login(AuthenticationRequest authenticationRequest) {
         UserProfile userProfile = userServiceClient.login(authenticationRequest);
         String token = generateToken(userProfile);

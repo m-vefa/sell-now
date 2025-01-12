@@ -7,8 +7,10 @@ spring:
     password: guest
   datasource:
     url: jdbc:postgresql://localhost:5432/sell_now_db
-    username: postgres
-    password: 1234
+    username: vkaraahmet
+    password: 123456
+
+
   jpa:
     show-sql: true
     properties:
