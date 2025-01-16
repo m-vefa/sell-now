@@ -1,5 +1,6 @@
 package zsell.com.searchservice.configuration.queue;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
@@ -11,13 +12,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@RequiredArgsConstructor
 public class DefaultRabbitMqConfiguration {
 
     private final RabbitProperties rabbitProperties;
+    private final CustomJackson2JsonMessageConverter customJackson2JsonMessageConverter;
 
-    DefaultRabbitMqConfiguration(RabbitProperties rabbitProperties) {
-        this.rabbitProperties = rabbitProperties;
-    }
+
 
     @Bean
     public ConnectionFactory connectionFactory() {
@@ -34,16 +35,18 @@ public class DefaultRabbitMqConfiguration {
         return new RabbitAdmin(connectionFactory);
     }
 
+
     @Bean
-    public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory) {
-        final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(converter());
+    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(customJackson2JsonMessageConverter);
+        rabbitTemplate.setChannelTransacted(true);
         return rabbitTemplate;
     }
+
 
     @Bean
     public MessageConverter converter() {
         return new Jackson2JsonMessageConverter();
-
     }
 }
