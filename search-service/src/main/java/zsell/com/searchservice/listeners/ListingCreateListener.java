@@ -6,21 +6,20 @@ import org.springframework.stereotype.Component;
 import zsell.com.searchservice.client.ListingServiceClient;
 import zsell.com.searchservice.configuration.queue.ListingChangedQueueConfiguration;
 import zsell.com.searchservice.converter.ListingConverter;
-import zsell.com.searchservice.service.ListingSearchService;
+import zsell.com.searchservice.domain.Listing;
+import zsell.com.searchservice.service.ListingSaveService;
 
 @Component
 @RequiredArgsConstructor
 public class ListingCreateListener {
     private final ListingServiceClient listingServiceClient;
-    private final ListingSearchService listingSearchService;
+    private final ListingSaveService listingSaveService;
     private final ListingConverter listingConverter;
 
     @RabbitListener(queues = ListingChangedQueueConfiguration.QUEUE )
     public void saveListingLead(Integer listingId) {
-        System.out.println("listingId: "+listingId);
-        System.out.println("saveListing: "+listingId);
-       // Listing listing = listingServiceClient.findListing(listingId);
-        //listingSearchService.saveListing();
+        Listing listing = listingConverter.apply(listingServiceClient.getListing(listingId));
+        listingSaveService.saveListing(listing);
     }
 
 }

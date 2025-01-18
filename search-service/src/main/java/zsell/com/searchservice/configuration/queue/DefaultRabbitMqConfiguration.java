@@ -44,7 +44,6 @@ public class DefaultRabbitMqConfiguration {
         return rabbitTemplate;
     }
 
-
     @Bean
     public MessageConverter converter() {
         return new Jackson2JsonMessageConverter();

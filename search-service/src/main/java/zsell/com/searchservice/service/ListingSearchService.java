@@ -17,10 +17,6 @@ import java.util.List;
 public class ListingSearchService {
 
     private final ElasticSearchService elasticSearchService;
-
-
-
-
     public List<Listing> processFilters(ListingFilterRequest filterRequest) {
         List<Query> queryList = new ArrayList<>();
 
