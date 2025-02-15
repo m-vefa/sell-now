@@ -1,17 +1,18 @@
-package org.zsell.listingservice.model;
+package zsell.com.searchservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class ListingPublishResponse {
-    private Integer id ;
-    private Integer activateId;
+@NoArgsConstructor
+@ToString
+public class ListingIdDto {
+    private Integer listingId;
 }

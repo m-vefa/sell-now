@@ -44,7 +44,7 @@ public class ListingChangedQueueConfiguration {
     }
 
     @Bean
-    public Binding binding(FanoutExchange listingChangedExchange, Queue listingChangedQueue) {
+    public Binding binding(Queue listingChangedQueue, FanoutExchange listingChangedExchange) {
         return BindingBuilder.bind(listingChangedQueue).to(listingChangedExchange);
     }
 
