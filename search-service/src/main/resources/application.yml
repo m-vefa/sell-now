@@ -12,6 +12,15 @@ spring:
     port: 5672
     username: guest
     password: guest
+    listener:
+      simple:
+        retry:
+          enabled: true
+          max-attempts: 2
+        prefetch: 5
+        concurrency: 5
+        max-concurrency: 40
+    virtual-host: /
   cloud:
     compatibility-verifier:
       enabled: false

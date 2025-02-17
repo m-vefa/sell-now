@@ -18,16 +18,12 @@ public class ListingSaveService {
     private final ElasticSearchService elasticSearchService;
 
     public void saveListing(Integer listingId) {
-        Map<String, Object> getListing = listingServiceClient.getListing(listingId);
-        Listing listing = listingConverter.apply(getListing);
-
         try {
+            Map<String, Object> getListing = listingServiceClient.getListing(listingId);
+            Listing listing = listingConverter.apply(getListing);
             elasticSearchService.save(listing);
-
-
-        }catch (Exception e){
-            throw new ListingSaveException( "33333333"+e);
-
+        } catch (Exception e) {
+            throw new ListingSaveException(e.toString());
         }
 
     }

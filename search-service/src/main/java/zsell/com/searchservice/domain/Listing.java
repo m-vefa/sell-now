@@ -19,7 +19,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Listing {
-    private  String listingId;
+    private  Integer listingId;
     private  Integer firmId;
     private  String title;
     private  String description;

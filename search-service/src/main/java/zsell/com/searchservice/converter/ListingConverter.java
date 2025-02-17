@@ -11,7 +11,7 @@ public class ListingConverter implements Function<Map<String ,Object>, Listing> 
     @Override
     public Listing apply(Map<String ,Object>listing) {
         return Listing.builder()
-                .listingId((String) listing.get("listingId"))
+                .listingId((Integer) listing.get("listingId"))
                 .firmId((Integer) listing.get("firmId"))
                 .price((Integer) listing.get("price"))
                 .statusId((Integer) listing.get("statusId"))

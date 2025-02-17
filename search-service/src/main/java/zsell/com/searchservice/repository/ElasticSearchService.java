@@ -26,10 +26,10 @@ public class ElasticSearchService {
 
     public void save(Listing listing) {
         try {
-            elasticsearchClient.index(i->i.index(LISTING_INDEX).id(listing.getListingId()).document(listing));
+            elasticsearchClient.index(i->i.index(LISTING_INDEX).id(String.valueOf(listing.getListingId())).document(listing));
         }
         catch (IOException e) {
-            throw new ListingSaveException("",listing.getListingId());
+            throw new ListingSaveException(String.valueOf(listing.getListingId()));
         }
     }
     public List<Listing> executeQuery(BoolQuery boolQuery) {

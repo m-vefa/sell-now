@@ -17,8 +17,6 @@ public class ListingChangedQueueConfiguration {
 
     public static final String QUEUE = "zsell.queue.listing-service";
     private static final String DEAD_LETTER_QUEUE = "zsell.queue.listing-service.dead-letter";
-
-
     public static final String X_DEAD_LETTER_EXCHANGE = "x-dead-letter-exchange";
     public static final String X_DEAD_LETTER_ROUTING_KEY = "x-dead-letter-routing-key";
 
@@ -37,12 +35,10 @@ public class ListingChangedQueueConfiguration {
         queue.setAdminsThatShouldDeclare(rabbitAdmin);
         return queue;
     }
-
     @Bean
     public Queue deadLetterQueue() {
         return QueueBuilder.durable(DEAD_LETTER_QUEUE).build();
     }
-
     @Bean
     public Binding binding(Queue listingChangedQueue, FanoutExchange listingChangedExchange) {
         return BindingBuilder.bind(listingChangedQueue).to(listingChangedExchange);
