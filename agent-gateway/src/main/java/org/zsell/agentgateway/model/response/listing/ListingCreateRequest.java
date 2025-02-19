@@ -1,4 +1,4 @@
-package org.zsell.agentgateway.model.listing;
+package org.zsell.agentgateway.model.response.listing;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,18 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ListingResponse {
-    private Integer listingId;
+public class ListingCreateRequest {
     private String title;
-    private String description;
     private Integer price;
-    private LocalDate createdDate;
-    private LocalDate updatedDate;
+    private String description;
+    private Integer categoryId;
 }

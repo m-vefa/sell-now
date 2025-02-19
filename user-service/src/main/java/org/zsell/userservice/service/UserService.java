@@ -10,7 +10,6 @@ import org.zsell.userservice.repository.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +21,7 @@ public class UserService {
     public List<UserResponse> getAllUsers() {
         List<User> users = userRepository.findAll();
 
-        return users.stream().map(userResponseConverter::convert).collect(Collectors.toList());
+        return users.stream().map(userResponseConverter::convert).toList();
     }
 
     public UserResponse getUserById(Integer id) {
@@ -35,16 +34,15 @@ public class UserService {
 
     public UserResponse createUser(UserCreateRequest userCreateRequest) {
         User user = User.builder()
-                .email(userCreateRequest.getUsername())
-                .email(userCreateRequest.getPassword())
+                .username(userCreateRequest.getUsername())
+                .password(userCreateRequest.getPassword())
                 .email(userCreateRequest.getEmail())
-                .email(userCreateRequest.getFirstName())
-                .email(userCreateRequest.getLastName())
-                .email(userCreateRequest.getPhoneNumber())
-                .email(userCreateRequest.getAddress())
+                .firstName(userCreateRequest.getFirstName())
+                .lastName(userCreateRequest.getLastName())
+                .phoneNumber(userCreateRequest.getPhoneNumber())
+                .address(userCreateRequest.getAddress())
                 .build();
-        userRepository.save(user); // Save user to database using repository
-
+        userRepository.save(user);
 
         return userResponseConverter.convert(user);
     }

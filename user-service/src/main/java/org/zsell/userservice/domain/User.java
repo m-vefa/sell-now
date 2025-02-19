@@ -11,8 +11,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Getter
@@ -40,11 +42,12 @@ public class User {
     private String phoneNumber;
 
     private String address;
-    @Column(name = "created_date", nullable = false, updatable = false)
-    private LocalDate createdDate;
+    @CreationTimestamp
+    @Column( nullable = false, updatable = false)
+    private LocalDateTime createdDate;
 
-    @Column(name = "updated_date")
-    private LocalDate updatedDate;
+    @UpdateTimestamp
+    private LocalDateTime updatedDate;
     private boolean isActive;
 
 }

@@ -2,12 +2,13 @@ package org.zsell.agentgateway.service.auth;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.zsell.agentgateway.model.auth.UserProfile;
+import org.zsell.agentgateway.model.response.auth.UserProfile;
 
 import java.util.Collection;
 import java.util.Collections;
 
 public class UserAuthentication  implements Authentication {
+
     private final UserProfile userProfile;
     private boolean authenticated = true;
 

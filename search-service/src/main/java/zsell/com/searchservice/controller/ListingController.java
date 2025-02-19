@@ -21,5 +21,4 @@ public class ListingController {
     public List<Listing> searchListings(@RequestBody ListingFilterRequest filterRequest) {
         return listingSearchService.processFilters(filterRequest);
     }
-
 }

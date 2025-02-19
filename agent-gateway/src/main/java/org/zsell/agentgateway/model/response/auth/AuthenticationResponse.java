@@ -1,4 +1,4 @@
-package org.zsell.agentgateway.model.listing;
+package org.zsell.agentgateway.model.response.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,11 +11,6 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ListingCreateRequest {
-    private String title;
-    private Integer price;
-    private String description;
-    private Integer categoryId;
-
-
+public class AuthenticationResponse {
+    private String jwtToken;
 }

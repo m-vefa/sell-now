@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 import org.zsell.agentgateway.client.UserServiceClient;
 import org.zsell.agentgateway.exception.InvalidTokenException;
 import org.zsell.agentgateway.exception.TokenGenerationException;
-import org.zsell.agentgateway.model.auth.AuthenticationRequest;
-import org.zsell.agentgateway.model.auth.AuthenticationResponse;
-import org.zsell.agentgateway.model.auth.UserProfile;
+import org.zsell.agentgateway.model.response.auth.AuthenticationRequest;
+import org.zsell.agentgateway.model.response.auth.AuthenticationResponse;
+import org.zsell.agentgateway.model.response.auth.UserProfile;
 
 import java.nio.charset.Charset;
 import java.security.KeyFactory;

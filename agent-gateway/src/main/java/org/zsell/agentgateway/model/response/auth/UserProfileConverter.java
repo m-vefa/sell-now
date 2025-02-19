@@ -1,4 +1,4 @@
-package org.zsell.agentgateway.model.auth;
+package org.zsell.agentgateway.model.response.auth;
 
 import io.jsonwebtoken.Claims;
 import org.apache.commons.lang3.StringUtils;
