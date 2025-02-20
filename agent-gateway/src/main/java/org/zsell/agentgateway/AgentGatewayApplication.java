@@ -13,5 +13,4 @@ public class AgentGatewayApplication {
 
         SpringApplication.run(AgentGatewayApplication.class, args);
     }
-
 }
