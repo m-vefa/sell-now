@@ -49,7 +49,6 @@ public class ListingSearchService {
 
         }
         if (!queryList.isEmpty()) {
-            queryList.add(QueryBuildersFactory.rangeQuery("updatedAt", "2025-01-01", "2025-01-04"));
             BoolQuery boolQuery = QueryBuildersFactory.buildBoolQuery(queryList);
             return elasticSearchService.executeQuery(boolQuery);
         }

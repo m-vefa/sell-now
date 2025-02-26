@@ -23,13 +23,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "tbl_users")
+@Table(name = "firm_user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+    private Integer userid;
+    private Integer firmId;
     private String username;
 
     private String password;
@@ -40,6 +40,7 @@ public class User {
     private String lastName;
 
     private String phoneNumber;
+    private Integer statusId;
 
     private String address;
     @CreationTimestamp
@@ -48,6 +49,5 @@ public class User {
 
     @UpdateTimestamp
     private LocalDateTime updatedDate;
-    private boolean isActive;
 
 }

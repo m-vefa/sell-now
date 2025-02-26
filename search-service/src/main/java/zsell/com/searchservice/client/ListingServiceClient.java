@@ -9,7 +9,7 @@ import java.util.Map;
 
 @FeignClient(value = "ListingServiceClient", url = "${listing.service.url}",configuration = ListingApiClientFeignConfiguration.class)
 public interface ListingServiceClient {
-    @GetMapping("/listing/{listingId}")
+    @GetMapping("/listings/{listingId}")
     Map<String ,Object>getListing(@PathVariable Integer listingId);
 }
 

@@ -8,12 +8,12 @@ public class AuthenticationResponseConverter {
 
         public AuthenticationResponse convert(User user) {
             return AuthenticationResponse.builder()
-                    .id(user.getId())
+                    .id(user.getUserid())
                     .firstName(user.getFirstName())
                     .lastName(user.getLastName())
                     .email(user.getEmail())
                     .phone(user.getPhoneNumber())
-                    .isActive(user.isActive())
+                    .statusId(user.getStatusId())
                     .build();
         }
     }

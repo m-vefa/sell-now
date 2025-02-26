@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.zsell.userservice.converter.UserResponseConverter;
 import org.zsell.userservice.domain.User;
+import org.zsell.userservice.enums.UserStatus;
+import org.zsell.userservice.exception.UserNotFoundException;
 import org.zsell.userservice.model.request.user.UserCreateRequest;
 import org.zsell.userservice.model.respose.user.UserResponse;
 import org.zsell.userservice.repository.UserRepository;
@@ -20,15 +22,11 @@ public class UserService {
 
     public List<UserResponse> getAllUsers() {
         List<User> users = userRepository.findAll();
-
         return users.stream().map(userResponseConverter::convert).toList();
     }
 
     public UserResponse getUserById(Integer id) {
-        Optional<User> userOptional = userRepository.findById(id);
-
-
-        return userOptional.map(userResponseConverter::convert).orElse(null);
+        return userRepository.findById(id).map(userResponseConverter::convert).orElseThrow(UserNotFoundException::new);
 
     }
 
@@ -41,6 +39,7 @@ public class UserService {
                 .lastName(userCreateRequest.getLastName())
                 .phoneNumber(userCreateRequest.getPhoneNumber())
                 .address(userCreateRequest.getAddress())
+                .statusId(UserStatus.PENDING_APPROVAL.getId())
                 .build();
         userRepository.save(user);
 
@@ -60,10 +59,10 @@ public class UserService {
                     .email(userCreateRequest.getPhoneNumber())
                     .email(userCreateRequest.getAddress())
                     .build();
-            userRepository.save(user); // Save user to database using repository
+            userRepository.save(user);
             return userResponseConverter.convert(user);
         }
-        return null; // or throw an exception indicating user not found
+        throw new UserNotFoundException();
     }
 
     public void deleteUser(Integer id) {

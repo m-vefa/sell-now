@@ -9,7 +9,7 @@ public class UserResponseConverter {
 
     public UserResponse convert(User user) {
         return UserResponse.builder()
-                .id(user.getId())
+                .userId(user.getUserid())
                 .email(user.getEmail())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())

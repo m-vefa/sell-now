@@ -10,8 +10,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.zsell.userservice.model.request.user.UserCreateRequest;
-import org.zsell.userservice.model.respose.user.UserCreateResponse;
 import org.zsell.userservice.model.respose.user.UserResponse;
 import org.zsell.userservice.service.UserService;
 
@@ -20,7 +18,7 @@ import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = UserController.class)
-public class UserControllerTest {
+class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -29,7 +27,7 @@ public class UserControllerTest {
     private UserService userService;
 
     @Test
-    public void testGetAllUsers() throws Exception {
+    void testGetAllUsers() throws Exception {
         List<UserResponse> users = Arrays.asList(new UserResponse(/* construct user response */));
         Mockito.when(userService.getAllUsers()).thenReturn(users);
 
@@ -40,7 +38,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testGetUserById() throws Exception {
+    void testGetUserById() throws Exception {
         UserResponse user = new UserResponse(/* construct user response */);
         Mockito.when(userService.getUserById(Mockito.anyInt())).thenReturn(user);
 
@@ -49,23 +47,9 @@ public class UserControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.username").value(user.getEmail()));
     }
 
-    @Test
-    public void testCreateUser() throws Exception {
-        UserCreateRequest userCreateRequest = new UserCreateRequest(/* construct user create request */);
-        UserCreateResponse userCreateResponse = new UserCreateResponse(/* construct user create response */);
-       /* Mockito.when(userService.createUser(userCreateRequest)).thenReturn(userCreateResponse);
-
-     /   mockMvc.perform(MockMvcRequestBuilders.post("/api/users")
-                        .contentType("application/json")
-                        .content(/))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.userId").value(userCreateResponse.getEmail()));
-    */
-    }
 
     @Test
-    public void testUpdateUser() throws Exception {
-        UserCreateRequest userCreateRequest = new UserCreateRequest(/* construct user create request */);
+    void testUpdateUser() throws Exception {
         UserResponse userResponse = new UserResponse(/* construct user response */);
         Mockito.when(userService.updateUser(Mockito.anyInt(), Mockito.any())).thenReturn(userResponse);
 
@@ -77,7 +61,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testDeleteUser() throws Exception {
+    void testDeleteUser() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/users/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
