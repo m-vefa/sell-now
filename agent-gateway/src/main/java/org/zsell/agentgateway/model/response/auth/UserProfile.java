@@ -24,6 +24,6 @@ public class UserProfile implements Serializable {
     private String userName;
     private String email;
     private String phone;
-    private Boolean isActive;
+    private Integer statusId;
 
 }

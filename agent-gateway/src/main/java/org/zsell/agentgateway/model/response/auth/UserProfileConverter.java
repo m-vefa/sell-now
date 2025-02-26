@@ -16,7 +16,9 @@ public class UserProfileConverter {
         userProfile.setUserName(getValue(claims, "userName"));
         userProfile.setEmail(getValue(claims, "email"));
         userProfile.setPhone(getValue(claims, "phone"));
-        userProfile.setIsActive(getBooleanValue(claims));
+        userProfile.setStatusId(getIntegerValue(claims, "statusId"));
+
+
         return userProfile;
     }
 
@@ -24,11 +26,6 @@ public class UserProfileConverter {
     private String getValue(Claims claims, String key) {
         Object foundValue = claims.getOrDefault(key, StringUtils.EMPTY);
         return foundValue == null ? null : foundValue.toString();
-    }
-
-    private Boolean getBooleanValue(Claims claims) {
-        Object foundValue = claims.getOrDefault("isActive", StringUtils.EMPTY);
-        return foundValue == null ? null : Boolean.parseBoolean(foundValue.toString());
     }
 
     private Integer getIntegerValue(Claims claims, String key) {

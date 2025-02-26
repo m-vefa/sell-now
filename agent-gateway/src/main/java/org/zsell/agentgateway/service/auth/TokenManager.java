@@ -104,7 +104,7 @@ public class TokenManager {
                 .claim("userName", userProfile.getUserName())
                 .claim("email", userProfile.getEmail())
                 .claim("phone", userProfile.getPhone())
-                .claim("isActive", userProfile.getIsActive())
+                .claim("statusId", userProfile.getStatusId())
                 .expiration(Date.from(Instant.now().plus(Duration.ofDays(30))))
                 .issuedAt(Date.from(Instant.now()))
                 .signWith(getPrivateKey());
