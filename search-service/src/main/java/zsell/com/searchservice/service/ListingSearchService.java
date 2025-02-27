@@ -14,6 +14,7 @@ import java.util.List;
 
 import static zsell.com.searchservice.constants.ListingIndexProperties.CATEGORY_ID;
 import static zsell.com.searchservice.constants.ListingIndexProperties.CREATED_AT;
+import static zsell.com.searchservice.constants.ListingIndexProperties.FIRM_ID;
 import static zsell.com.searchservice.constants.ListingIndexProperties.PRICE;
 import static zsell.com.searchservice.constants.ListingIndexProperties.STATUS_ID;
 import static zsell.com.searchservice.constants.ListingIndexProperties.UPDATED_AT;
@@ -27,7 +28,7 @@ public class ListingSearchService {
         List<Query> queryList = new ArrayList<>();
 
         if (filterRequest.getFirmId() != null) {
-            queryList.add(QueryBuildersFactory.matchQuery("firmId", String.valueOf(filterRequest.getFirmId())));
+            queryList.add(QueryBuildersFactory.matchQuery(FIRM_ID, String.valueOf(filterRequest.getFirmId())));
         }
 
         if (filterRequest.getMin() != null && filterRequest.getMax() != null) {
