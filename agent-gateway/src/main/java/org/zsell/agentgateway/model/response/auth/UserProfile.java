@@ -18,7 +18,8 @@ public class UserProfile implements Serializable {
 
     private static final long serialVersionUID = 5957551812170018960L;
 
-    private Integer id;
+    private Integer userId;
+    private Integer firmId;
     private String firstName;
     private String lastName;
     private String userName;

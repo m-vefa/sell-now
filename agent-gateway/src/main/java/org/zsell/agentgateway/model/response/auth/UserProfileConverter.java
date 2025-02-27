@@ -10,14 +10,14 @@ public class UserProfileConverter {
     public UserProfile apply(Claims claims) {
         UserProfile userProfile = new UserProfile();
 
-        userProfile.setId(getIntegerValue(claims, "id"));
+        userProfile.setUserId(getIntegerValue(claims, "userId"));
+        userProfile.setFirmId(getIntegerValue(claims, "firmId"));
         userProfile.setFirstName(getValue(claims, "firstName"));
         userProfile.setLastName(getValue(claims, "lastName"));
         userProfile.setUserName(getValue(claims, "userName"));
         userProfile.setEmail(getValue(claims, "email"));
         userProfile.setPhone(getValue(claims, "phone"));
         userProfile.setStatusId(getIntegerValue(claims, "statusId"));
-
 
         return userProfile;
     }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.zsell.agentgateway.model.response.listing.ListingCreateRequest;
 import org.zsell.agentgateway.model.response.listing.ListingCreateResponse;
@@ -24,13 +25,13 @@ public class ListingController {
     public ListingCreateResponse createListing(@RequestBody ListingCreateRequest listingCreateRequest) {
         return listingService.createListing(listingCreateRequest);
     }
-    @PostMapping("/publish/{listingId}")
+    @PostMapping("/{listingId}/publish")
     public void publishListing(@PathVariable Integer listingId) {
         listingService.publishListing(listingId);
     }
 
-    @GetMapping("/firm/{firmId}")
-    public List<ListingResponse> getListingsByFirmId(@PathVariable Integer firmId) {
+    @GetMapping()
+    public List<ListingResponse> getListingsByFirmId(@RequestParam Integer firmId) {
         return listingService.getListingsByFirmId(firmId);
     }
 

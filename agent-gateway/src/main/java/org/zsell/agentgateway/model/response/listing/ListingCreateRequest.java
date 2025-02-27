@@ -16,4 +16,5 @@ public class ListingCreateRequest {
     private Integer price;
     private String description;
     private Integer categoryId;
+    private Integer firmId;
 }

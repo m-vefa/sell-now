@@ -98,7 +98,8 @@ public class TokenManager {
 
     private JwtBuilder createJwtBuilder(UserProfile userProfile) throws NoSuchAlgorithmException, InvalidKeySpecException {
         return Jwts.builder()
-                .claim("id", userProfile.getId())
+                .claim("userId", userProfile.getUserId())
+                .claim("firmId", userProfile.getFirmId())
                 .claim("firstName", userProfile.getFirstName())
                 .claim("lastName", userProfile.getLastName())
                 .claim("userName", userProfile.getUserName())

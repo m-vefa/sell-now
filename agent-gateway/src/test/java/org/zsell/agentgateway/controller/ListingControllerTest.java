@@ -55,13 +55,13 @@ class ListingControllerTest {
     void publishListing_whenValidListingId_shouldReturnOk() throws Exception {
         mockMvc = MockMvcBuilders.webAppContextSetup(context).addFilters(springSecurityFilterChain).build();
         UserProfile userProfile = new UserProfile();
-        userProfile.setId(1);
+        userProfile.setUserId(1);
         UserAuthentication authentication = new UserAuthentication(userProfile);
         when(authenticationService.getUserAuthentication(any())).thenReturn(authentication);
 
 
         doNothing().when(listingService).publishListing(eq(1));
-        ResultActions resultActions = mockMvc.perform(post("/listings/publish/1").contentType(MediaType.APPLICATION_JSON));
+        ResultActions resultActions = mockMvc.perform(post("/listings/1/publish").contentType(MediaType.APPLICATION_JSON));
         resultActions.andExpect(status().isOk());
         verify(listingService).publishListing((eq(1)));
 

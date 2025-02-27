@@ -8,7 +8,8 @@ public class AuthenticationResponseConverter {
 
         public AuthenticationResponse convert(User user) {
             return AuthenticationResponse.builder()
-                    .id(user.getUserid())
+                    .userId(user.getUserid())
+                    .firmId(user.getFirmId())
                     .firstName(user.getFirstName())
                     .lastName(user.getLastName())
                     .email(user.getEmail())

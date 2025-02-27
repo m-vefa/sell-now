@@ -14,7 +14,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class AuthenticationResponse {
-    private Integer id;
+    private Integer userId;
+    private Integer firmId;
     private String firstName;
     private String lastName;
     private String email;
