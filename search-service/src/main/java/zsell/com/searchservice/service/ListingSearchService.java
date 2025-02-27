@@ -12,6 +12,12 @@ import zsell.com.searchservice.repository.QueryBuildersFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+import static zsell.com.searchservice.constants.ListingIndexProperties.CATEGORY_ID;
+import static zsell.com.searchservice.constants.ListingIndexProperties.CREATED_AT;
+import static zsell.com.searchservice.constants.ListingIndexProperties.PRICE;
+import static zsell.com.searchservice.constants.ListingIndexProperties.STATUS_ID;
+import static zsell.com.searchservice.constants.ListingIndexProperties.UPDATED_AT;
+
 @Service
 @RequiredArgsConstructor
 public class ListingSearchService {
@@ -25,27 +31,27 @@ public class ListingSearchService {
         }
 
         if (filterRequest.getMin() != null && filterRequest.getMax() != null) {
-            queryList.add(QueryBuildersFactory.rangeQuery("price", filterRequest.getMin(), filterRequest.getMax()));
+            queryList.add(QueryBuildersFactory.rangeQuery(PRICE, filterRequest.getMin(), filterRequest.getMax()));
         } else if (filterRequest.getMin() != null) {
-            queryList.add(QueryBuildersFactory.rangeQuery("price", filterRequest.getMin(), null));
+            queryList.add(QueryBuildersFactory.rangeQuery(PRICE, filterRequest.getMin(), null));
         } else if (filterRequest.getMax() != null) {
-            queryList.add(QueryBuildersFactory.rangeQuery("price", null, filterRequest.getMax()));
+            queryList.add(QueryBuildersFactory.rangeQuery(PRICE, null, filterRequest.getMax()));
         }
         if (filterRequest.getStatusId() != null) {
-            queryList.add(QueryBuildersFactory.matchQuery("statusId", String.valueOf(filterRequest.getStatusId())));
+            queryList.add(QueryBuildersFactory.matchQuery(STATUS_ID, String.valueOf(filterRequest.getStatusId())));
         }
         if (filterRequest.getCategoryId() != null) {
-            queryList.add(QueryBuildersFactory.matchQuery("categoryId", String.valueOf(filterRequest.getCategoryId())));
+            queryList.add(QueryBuildersFactory.matchQuery(CATEGORY_ID, String.valueOf(filterRequest.getCategoryId())));
 
         }
 
         if (filterRequest.getCreatedDate() != null) {
-            queryList.add(QueryBuildersFactory.matchQuery("createdAt", filterRequest.getCreatedDate().toString()));
+            queryList.add(QueryBuildersFactory.matchQuery(CREATED_AT, filterRequest.getCreatedDate().toString()));
 
         }
 
         if (filterRequest.getUpdatedDate() != null) {
-            queryList.add(QueryBuildersFactory.matchQuery("updatedAt", filterRequest.getUpdatedDate().toString()));
+            queryList.add(QueryBuildersFactory.matchQuery(UPDATED_AT, filterRequest.getUpdatedDate().toString()));
 
         }
         if (!queryList.isEmpty()) {
