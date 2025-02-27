@@ -2,7 +2,6 @@ spring:
   application:
     name: search-service
 
-  # Exclude DataSource auto-configuration (for PostgreSQL, if not used)
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 
@@ -16,7 +15,7 @@ spring:
       simple:
         retry:
           enabled: true
-          max-attempts: 2
+          max-attempts: 1
         prefetch: 5
         concurrency: 5
         max-concurrency: 40

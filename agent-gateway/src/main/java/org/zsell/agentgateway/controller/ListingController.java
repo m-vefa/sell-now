@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.zsell.agentgateway.model.request.ListingFilterRequest;
 import org.zsell.agentgateway.model.response.listing.ListingCreateRequest;
 import org.zsell.agentgateway.model.response.listing.ListingCreateResponse;
 import org.zsell.agentgateway.model.response.listing.ListingResponse;
+import org.zsell.agentgateway.service.listing.SearchService;
 import org.zsell.agentgateway.service.listing.ListingService;
 
 import java.util.List;
@@ -20,6 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ListingController {
     private final ListingService listingService;
+    private final SearchService searchService;
 
     @PostMapping
     public ListingCreateResponse createListing(@RequestBody ListingCreateRequest listingCreateRequest) {
@@ -33,6 +36,11 @@ public class ListingController {
     @GetMapping()
     public List<ListingResponse> getListingsByFirmId(@RequestParam Integer firmId) {
         return listingService.getListingsByFirmId(firmId);
+    }
+
+    @GetMapping("/search")
+    public List<ListingResponse> getFilteredListings(@RequestBody ListingFilterRequest filterRequest) {
+        return searchService.getFilteredListings(filterRequest);
     }
 
 }

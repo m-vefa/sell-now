@@ -30,7 +30,6 @@ public class ListingSearchService {
         if (filterRequest.getFirmId() != null) {
             queryList.add(QueryBuildersFactory.matchQuery(FIRM_ID, String.valueOf(filterRequest.getFirmId())));
         }
-
         if (filterRequest.getMin() != null && filterRequest.getMax() != null) {
             queryList.add(QueryBuildersFactory.rangeQuery(PRICE, filterRequest.getMin(), filterRequest.getMax()));
         } else if (filterRequest.getMin() != null) {
@@ -47,12 +46,12 @@ public class ListingSearchService {
         }
 
         if (filterRequest.getCreatedDate() != null) {
-            queryList.add(QueryBuildersFactory.matchQuery(CREATED_AT, filterRequest.getCreatedDate().toString()));
+            queryList.add(QueryBuildersFactory.rangeQuery(CREATED_AT, filterRequest.getCreatedDate().toString(), null));
 
         }
 
         if (filterRequest.getUpdatedDate() != null) {
-            queryList.add(QueryBuildersFactory.matchQuery(UPDATED_AT, filterRequest.getUpdatedDate().toString()));
+            queryList.add(QueryBuildersFactory.rangeQuery(UPDATED_AT, filterRequest.getUpdatedDate().toString(),null));
 
         }
         if (!queryList.isEmpty()) {

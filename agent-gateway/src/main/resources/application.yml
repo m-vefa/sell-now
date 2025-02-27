@@ -22,3 +22,6 @@ user:
 listing:
   service:
     url: http://localhost:7779
+search:
+  service:
+    url: http://localhost:7784
