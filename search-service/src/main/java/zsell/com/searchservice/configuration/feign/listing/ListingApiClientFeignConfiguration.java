@@ -14,12 +14,12 @@ public class ListingApiClientFeignConfiguration {
     private static final boolean FOLLOW_REDIRECTS = true;
 
     @Bean
-    public Contract useRealtyFavoriteApiClientFeignAnnotations() {
+    public Contract useListingServiceClientFeignAnnotations() {
         return new SpringMvcContract();
     }
 
     @Bean
-    public ListingClientErrorDecoder realtyFavoriteApiClientErrorDecoder() {
+    public ListingClientErrorDecoder listingServiceClientErrorDecoder() {
         return new ListingClientErrorDecoder();
     }
     @Bean
