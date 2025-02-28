@@ -27,8 +27,9 @@ public class ListingService {
         listingServiceClient.publishListing(listingId);
     }
 
-    public List<ListingResponse> getListingsByFirmId(Integer firmId) {
-       return  listingServiceClient.getListingsByFirmId(firmId);
+    public List<ListingResponse> getListingsByFirmId() {
+        final UserProfile userAuthUtils = UserAuthUtils.getUser();
+        return listingServiceClient.getListingsByFirmId(userAuthUtils.getFirmId());
 
     }
 }

@@ -34,8 +34,8 @@ public class ListingController {
     }
 
     @GetMapping()
-    public List<ListingResponse> getListingsByFirmId(@RequestParam Integer firmId) {
-        return listingService.getListingsByFirmId(firmId);
+    public List<ListingResponse> getListingsByFirmId() {
+        return listingService.getListingsByFirmId();
     }
 
     @GetMapping("/search")

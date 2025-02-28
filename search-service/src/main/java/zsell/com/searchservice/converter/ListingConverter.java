@@ -12,7 +12,7 @@ import java.util.function.Function;
 public class ListingConverter implements Function<Map<String ,Object>, Listing> {
     @Override
     public Listing apply(Map<String ,Object>listing) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS");
         LocalDateTime createdDate = LocalDateTime.parse((String) listing.get("createdDate"), formatter);
         LocalDateTime updatedDate = LocalDateTime.parse((String) listing.get("createdDate"), formatter);
 
