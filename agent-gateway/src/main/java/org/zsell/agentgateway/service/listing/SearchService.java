@@ -21,7 +21,7 @@ public class SearchService {
     public List<ListingResponse> getFilteredListings(ListingFilterRequest listingFilterRequest) {
         final UserProfile userAuthUtils = UserAuthUtils.getUser();
         listingFilterRequest.setFirmId(userAuthUtils.getFirmId());
-        return  searchServiceClient.getFilteredListings(listingFilterRequest);
+        return searchServiceClient.getFilteredListings(listingFilterRequest);
 
     }
 }

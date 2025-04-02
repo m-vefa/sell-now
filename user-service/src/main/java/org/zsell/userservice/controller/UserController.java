@@ -1,6 +1,7 @@
 package org.zsell.userservice.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,4 +46,11 @@ public class UserController {
     public void deleteUser(@PathVariable Integer id) {
         userService.deleteUser(id);
     }
+
+    @GetMapping("/example/{id:\\d+}")
+    public ResponseEntity<String> handlePathVariable(@PathVariable("id") String id) {
+        return ResponseEntity.ok("Path variable contains only digits: " + id);
+    }
+
+
 }

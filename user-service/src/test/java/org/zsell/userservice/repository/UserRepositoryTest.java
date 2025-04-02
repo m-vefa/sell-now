@@ -33,7 +33,7 @@ public class UserRepositoryTest {
         User savedUser = userRepository.save(user);
 
 
-        Optional<User> retrievedUserOptional = userRepository.findById(savedUser.getId());
+        Optional<User> retrievedUserOptional = userRepository.findById(savedUser.getUserid());
         assertTrue(retrievedUserOptional.isPresent());
         User retrievedUser = retrievedUserOptional.get();
         assertEquals("testuser", retrievedUser.getUsername());
@@ -66,7 +66,7 @@ public class UserRepositoryTest {
         userRepository.delete(savedUser);
 
 
-        Optional<User> retrievedUserOptional = userRepository.findById(savedUser.getId());
+        Optional<User> retrievedUserOptional = userRepository.findById(savedUser.getUserid());
         assertTrue(retrievedUserOptional.isEmpty());
     }
 }
