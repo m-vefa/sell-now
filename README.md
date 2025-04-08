@@ -81,7 +81,6 @@ This repository contains a Docker Compose configuration for running Elasticsearc
 
 ---
 
-
 ## Verifying the Setup
 
 To check the health of the Elasticsearch cluster:
