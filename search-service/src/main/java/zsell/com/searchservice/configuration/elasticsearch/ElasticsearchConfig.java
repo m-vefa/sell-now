@@ -7,14 +7,9 @@ import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.ssl.SSLContexts;
 import org.elasticsearch.client.RestClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
 
 @Configuration
 public class ElasticsearchConfig {
@@ -23,7 +18,7 @@ public class ElasticsearchConfig {
     private static final String ELASTICSEARCH_HOST = "localhost";
     private static final int ELASTICSEARCH_PORT = 9200;
     private static final String ELASTICSEARCH_USERNAME = "elastic";
-    private static final String ELASTICSEARCH_PASSWORD = "K37maxQ4IL*r81wp1+ia";
+    private static final String ELASTICSEARCH_PASSWORD = "Vefa12345";
 
 
     @Bean
@@ -31,22 +26,18 @@ public class ElasticsearchConfig {
         BasicCredentialsProvider credentialsProvider = new BasicCredentialsProvider();
         credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(ELASTICSEARCH_USERNAME, ELASTICSEARCH_PASSWORD));
 
-
-        return RestClient.builder(new HttpHost(ELASTICSEARCH_HOST, ELASTICSEARCH_PORT, "https"))
+        return RestClient.builder(new HttpHost(ELASTICSEARCH_HOST, ELASTICSEARCH_PORT, "http"))
                 .setHttpClientConfigCallback(httpClientBuilder -> {
-                            try {
-                                return httpClientBuilder
-                                        .setDefaultCredentialsProvider(credentialsProvider)
-                                        .setSSLHostnameVerifier((hostname, session) -> true)
-                                        .setSSLContext(SSLContexts.custom().loadTrustMaterial(null, (chain, authType) -> true).build());
-                            } catch (NoSuchAlgorithmException |KeyManagementException |KeyStoreException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
-                )
+                    try {
+                        return httpClientBuilder
+                                .setDefaultCredentialsProvider(credentialsProvider);
+                    } catch (Exception e) {
+                        throw new RuntimeException("Failed to configure HTTP client", e);
+                    }
+                })
                 .build();
-
     }
+
 
     @Bean
     public ElasticsearchClient elasticsearchClient(RestClient restClient) {
